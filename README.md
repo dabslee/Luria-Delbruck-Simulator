@@ -16,6 +16,7 @@ Next, the program will ask the user whether to use the default experiment parame
 * Mutation rate (a) = 0.01
 * Number of slides = 3
 * Number of generations/rounds = 50
+
 To choose the default parameters, enter `D`; to enter custom ones, enter `C`. If you choose the custom option, you will be prompted to enter values for all the above parameters.
 
 Once you have done all the above, a new window should open running the simulation. The green regions represent the nonmutated population, while the red circles represent the mutated population. You can pause the simulation at any time by holding down the space bar.
