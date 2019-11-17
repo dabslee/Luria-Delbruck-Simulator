@@ -1,7 +1,7 @@
-# LURIA-DELBRUCK FLUCTUATION TEST
+# Luria-Delbrück Fluctuation Test
 Brandon Lee 2019
 
-A simulator of the Luria-Delbruck Fluctuation Test, which showed that the "mutation hypothesis"--that mutations arose randomly independent of their environment--was correct, as opposed to the "acquired immunity hypothesis"--that mutations occured as an adaptive response to an environmental stimulus. Read more about the experiment here: https://en.wikipedia.org/wiki/Luria%E2%80%93Delbr%C3%BCck_experiment
+A simulator of the Luria-Delbrück Fluctuation Test, which showed that the "mutation hypothesis"--that mutations arose randomly independent of their environment--was correct, as opposed to the "acquired immunity hypothesis"--that mutations occured as an adaptive response to an environmental stimulus. Read more about the experiment here: https://en.wikipedia.org/wiki/Luria%E2%80%93Delbr%C3%BCck_experiment
 
 Credit to my ISC231 course for teaching me about the experiment.
 
