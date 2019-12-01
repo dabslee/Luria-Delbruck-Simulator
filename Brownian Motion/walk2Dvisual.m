@@ -6,7 +6,7 @@ animate = true;
 startpos = [0,0];
 steps = 1000;
 stepsize = 1;
-path = walk2D(startpos, steps, stepsize);
+path = walkND(startpos, steps, stepsize);
 
 for i = 1:steps
     if (animate || i == steps)

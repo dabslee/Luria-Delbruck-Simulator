@@ -1,4 +1,4 @@
-% Runs 100 simulations of 2D walks of 1000 steps each, then does the
+% Runs 100 simulations of ND walks of 1000 steps each, then does the
 % following:
 %  (1) Calculates the mean final displacement and mean final squared
 %      displacement
@@ -7,16 +7,17 @@
 %      steps
 % It prints (1) to the command window, while saving (2),(3) as images.
 
+N = 2;
 simulations = 100;
-startpos = [0,0];
+startpos = zeros(1,N);
 steps = 1000;
 stepsize = 1;
 
 % Run the simulations
 xs = zeros(simulations,steps+1);
 for i = 1:simulations
-    pos = walk2D(startpos, steps, stepsize);
-    xs(i,:) = sqrt(pos(:,1).^2+pos(:,2).^2);
+    pos = walkND(startpos, steps, stepsize);
+    xs(i,:) = magvecrows(pos);
 end
 % Calculate the mean distance and mean square distance at every step #
 xmean = mean(xs);
@@ -55,4 +56,15 @@ function format(fig, title_arg, xlabel_arg, ylabel_arg, xlim_arg, ylim_arg)
     ylim(ylim_arg);
     set(findall(fig,'-property','FontSize'),'FontSize',14);
     set(fig,'color','w');
+end
+
+% A function that calculates the magnitude of vectors stored as rows
+% xs(i,:) = sqrt(pos(:,1).^2+pos(:,2).^2);
+function xs = magvecrows(pos)
+    siz = size(pos);
+    squaredsum = zeros(siz(1),1);
+    for i = 1:siz(2) % for each dimension
+        squaredsum = squaredsum + pos(:,i).^2;
+    end
+    xs = sqrt(squaredsum);
 end

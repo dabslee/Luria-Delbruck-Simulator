@@ -5,7 +5,7 @@
 function path = walk1D(startpos, steps, stepsize)
     path = startpos;
     for i = 1:steps
-        pm1 = round(rand*2-1); % randomly picks -1 or 1
+        pm1 = round(rand)*2-1; % randomly picks -1 or 1
         startpos = startpos + stepsize*pm1;
         path = [path, startpos];
     end
