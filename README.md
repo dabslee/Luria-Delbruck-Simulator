@@ -3,7 +3,7 @@ A collection of simulations based on famous labs.
 
 So far, the simulations included are:
 * [Luria-Delbrück Fluctuation Test](#luria-delbrück-fluctuation-test)
-* Brownian Motion
+* [Brownian Motion](#brownian-motion)
 
 ## Luria-Delbrück Fluctuation Test
 
