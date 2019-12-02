@@ -15,8 +15,9 @@ for i = 1:steps
         plot3(path(i,1),path(i,2),path(i,3),'r.','MarkerSize',20);
         hold off
         title("3D Random Walk");
-        xlabel("Step #");
-        ylabel("Position");
+        xlabel("x");
+        ylabel("y");
+        zlabel("z");
         xlim([min(path(:,1)),max(path(:,1))]);
         ylim([min(path(:,2)),max(path(:,2))]);
         zlim([min(path(:,3)),max(path(:,3))]);

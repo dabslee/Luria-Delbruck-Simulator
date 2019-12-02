@@ -7,7 +7,7 @@
 %      steps
 % It prints (1) to the command window, while saving (2),(3) as images.
 
-N = 2;
+N = 1;
 simulations = 100;
 startpos = zeros(1,N);
 steps = 1000;
@@ -59,7 +59,6 @@ function format(fig, title_arg, xlabel_arg, ylabel_arg, xlim_arg, ylim_arg)
 end
 
 % A function that calculates the magnitude of vectors stored as rows
-% xs(i,:) = sqrt(pos(:,1).^2+pos(:,2).^2);
 function xs = magvecrows(pos)
     siz = size(pos);
     squaredsum = zeros(siz(1),1);
