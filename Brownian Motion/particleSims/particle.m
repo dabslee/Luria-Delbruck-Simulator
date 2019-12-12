@@ -8,28 +8,20 @@
 % To prevent having initial conditions where the particles overlap, we will start with the particles
 % in an ordered matrix.
 
-% The parameters used her are representative of glycerol molecules at room
-% temperature.
+% N = Number of particles
+% r = Radius of each particle
+% m = Mass of each particle
+% d = Initial spacing between particles
 
-% tf = time length of simulation
-
-function allxs = particle(tf)
+function allxs = particle(N, m, r, d, tf, dt)
 
     KB = 1.38064852e-23; % Boltzmann constant
     T = 296.15; % Temperature
-
-    N = 10; % Number of particles
-    r = 3.1e-10; % Radius of each particle
-    m = 1.53e-25; % Mass of each particle
-    d = 4.95e-10; % Initial spacing between particles
-
-    dt = tf*10^(-3);
     
-    boxL = d*(N-1)/2;
+    boxL = d*(N-1)/2+r;
 
-    xs = -boxL:d:boxL;
+    xs = -boxL+r:d:boxL-r;
     vs = norminv(rand(1,N))*sqrt(KB*T/m);
-    disp(mean(vs));
 
     allxs = [];
 
@@ -59,6 +51,4 @@ function allxs = particle(tf)
         end
         xs = xs + vs * dt;
     end
-    
-    %disp("analyzed");
 end
