@@ -7,17 +7,17 @@
 %      steps
 % It prints (1) to the command window, while saving (2),(3) as images.
 
-N = 1;
+N = 3;
 simulations = 100;
 startpos = zeros(1,N);
 steps = 1000;
 stepsize = 1;
 
 % Run the simulations
-xs = zeros(simulations,steps+1);
+xs = zeros(simulations,steps+1,N);
 for i = 1:simulations
     pos = walkND(startpos, steps, stepsize);
-    xs(i,:) = magvecrows(pos);
+    xs(i,:,:) = pos;
 end
 % Calculate the mean distance and mean square distance at every step #
 xmean = mean(xs);
@@ -28,24 +28,35 @@ disp("Mean Final Displacement: " + xmean(end));
 disp("Mean Final Squared Displacement: " + xsqmean(end));
 
 % Plot the mean displacement as a function of the number of steps
-plot(0:steps,xmean,'LineWidth',1);
+figure(1);
+hold on
+for n = 1:N
+    plot(0:steps,xmean(1,:,n),'LineWidth',1);
+end
+hold off
 format(gcf,"Mean displacement (\langle x \rangle) v. Step #",...
     "Step #","\langle x \rangle",[0,steps],[-50,50]);
-saveas(gcf,"plots/xmean.png");
 
 % Plot the mean squared displacement as a function of the number of steps
-plot(0:steps,xsqmean,'LineWidth',1);
-% Calculate the linear regression and plot that, too
-tb = table((0:steps)',(xsqmean)');
-lm = fitlm(tb,'linear');
-coeffs = lm.Coefficients.Estimate;
+figure(2);
 hold on
-plot(0:steps,coeffs(2)*(0:steps)+coeffs(1),'LineWidth',1);
+for n = 1:N
+    plot(0:steps,xsqmean(1,:,n),'LineWidth',1);
+end
 hold off
-disp(lm);
+% Calculate the linear regression and plot that, too
+disp("R^2 values for linear fits:");
+hold on
+for n = 1:N
+    tb = table((0:steps)',(xsqmean(1,:,n))');
+    lm = fitlm(tb,'linear');
+    coeffs = lm.Coefficients.Estimate;
+    disp(lm.Rsquared.Ordinary);
+    plot(0:steps,coeffs(2)*(0:steps)+coeffs(1),'LineWidth',1);
+end
+hold off
 format(gcf,"Mean squared displacement (\langle x^2 \rangle) v. Step #",...
-    "Step #","\langle x^2 \rangle",[0,steps],[0,max(xsqmean)]);
-saveas(gcf,"plots/xsqmean.png");
+    "Step #","\langle x^2 \rangle",[0,steps],[0,max(xsqmean,[],'all')]);
 
 % A function that whitens the figure background and sets the font sizes
 function format(fig, title_arg, xlabel_arg, ylabel_arg, xlim_arg, ylim_arg)
@@ -56,14 +67,4 @@ function format(fig, title_arg, xlabel_arg, ylabel_arg, xlim_arg, ylim_arg)
     ylim(ylim_arg);
     set(findall(fig,'-property','FontSize'),'FontSize',14);
     set(fig,'color','w');
-end
-
-% A function that calculates the magnitude of vectors stored as rows
-function xs = magvecrows(pos)
-    siz = size(pos);
-    squaredsum = zeros(siz(1),1);
-    for i = 1:siz(2) % for each dimension
-        squaredsum = squaredsum + pos(:,i).^2;
-    end
-    xs = sqrt(squaredsum);
 end
