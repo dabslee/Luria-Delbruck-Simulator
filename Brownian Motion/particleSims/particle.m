@@ -12,8 +12,9 @@
 % r = Radius of each particle
 % m = Mass of each particle
 % d = Initial spacing between particles
+% f = Particle index under focus
 
-function allxs = particle(N, m, r, d, tf, dt)
+function allxs = particle(N, m, r, d, tf, dt, f)
 
     KB = 1.38064852e-23; % Boltzmann constant
     T = 296.15; % Temperature
@@ -21,12 +22,12 @@ function allxs = particle(N, m, r, d, tf, dt)
     boxL = d*(N-1)/2+r;
 
     xs = -boxL+r:d:boxL-r;
-    vs = norminv(rand(1,N))*sqrt(KB*T/m);
+    vs = normrnd(0,1,[1,N])*sqrt(KB*T/m);
 
-    allxs = [];
+    allxs = zeros(round(tf/dt)+1,N);
 
     for t = 0:dt:tf
-        allxs = [allxs;xs];
+        allxs(round(t/dt)+1,:) = xs;
         for i = 1:length(xs)
             if (xs(i) >= boxL-r)
                 vs(i) = -abs(vs(i));
@@ -34,16 +35,21 @@ function allxs = particle(N, m, r, d, tf, dt)
             if (xs(i) <= -boxL+r)
                 vs(i) = abs(vs(i));
             end
-            for j = i+1:length(xs)
-                if (abs(xs(i)-xs(j)) <= 2*r)
-                    temp = vs(i);
-                    vs(i) = vs(j);
-                    vs(j) = temp;
-                    while (abs(xs(i)-xs(j)) <= 2*r)
-                        if (xs(i)<xs(j))
-                            xs(i) = xs(i)-r/10;
-                        else
-                            xs(j) = xs(j)-r/10;
+            if i == f
+                for j = 1:length(xs)
+                    if i == j
+                        continue
+                    end
+                    if (abs(xs(i)-xs(j)) <= 2*r)
+                        temp = vs(i);
+                        vs(i) = vs(j);
+                        vs(j) = temp;
+                        while (abs(xs(i)-xs(j)) <= 2*r)
+                            if (xs(i)<xs(j))
+                                xs(i) = xs(i)-r/10;
+                            else
+                                xs(j) = xs(j)-r/10;
+                            end
                         end
                     end
                 end
