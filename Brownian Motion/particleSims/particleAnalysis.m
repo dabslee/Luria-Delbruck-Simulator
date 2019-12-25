@@ -2,11 +2,10 @@
 % mean-squared-distance over time to show that they are constant at 0 and
 % linear, respectively.
 
-simulations = 1000;
+simulations = 500;
 
 load water_parameters
 f = ceil(N/2);
-boundgraphs = false;
 xlims = [0,2e-11];
 ylims = [-1,15];
 
@@ -22,31 +21,22 @@ end
 mds = mean(allxsred);
 msds = mean(allxsred.^2);
 
-figure(1);
-plot((1:length(mds))*dt,mds/d);
-title("Mean distance / Initial Spacing v. Time");
-xlabel("Time (s)");
-ylabel("MD/d");
-if (boundgraphs)
-    xlim(xlims);
-    ylim(ylims);
-end
-set(gcf,'color','w');
-
-figure(2);
+plot((1:length(mds))*dt,mds/d,'b','LineWidth',1);
 times = (1:length(msds))*dt;
-plot(times,msds/d^2);
+hold on
 tb = table((times)',(msds/d^2)');
 lm = fitlm(tb,'linear')
 coeffs = lm.Coefficients.Estimate;
-hold on
-plot(times,coeffs(1)+coeffs(2)*times);
+plot(times,coeffs(1)+coeffs(2)*times,'r--','LineWidth',1);
+plot(times,msds/d^2,'k','LineWidth',1);
 hold off
-title("Mean squared distance / Square Initial Spacing v. Time");
 xlabel("Time (s)");
-ylabel("MSD/d^2");
-if (boundgraphs)
+ylabel("Ratio");
+formatgraph(gcf,xlims,ylims);
+
+function formatgraph(fig, xlims, ylims)
     xlim(xlims);
     ylim(ylims);
+    set(fig,'color','w');
+    set(findall(gcf,'-property','FontSize'),'FontSize',14);
 end
-set(gcf,'color','w');
