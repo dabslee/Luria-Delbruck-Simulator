@@ -7,7 +7,7 @@ simulations = 500;
 load water_parameters
 f = ceil(N/2);
 xlims = [0,2e-11];
-ylims = [-1,15];
+ylims = [-3,18];
 
 allxsred = zeros(N,round(tf/dt)+1);
 for s = 1:simulations
@@ -21,22 +21,27 @@ end
 mds = mean(allxsred);
 msds = mean(allxsred.^2);
 
-plot((1:length(mds))*dt,mds/d,'b','LineWidth',1);
+std11 = std(allxsred/d)/sqrt(simulations)*5;
+std21 = std(allxsred.^2/d^2)/sqrt(simulations)*5;
+std1 = NaN(length(std11),1);
+std2 = NaN(length(std21),1);
+std1(1:2:end) = std11(1:2:end);
+std2(1:2:end) = std21(1:2:end);
+
+e = errorbar((1:length(mds))*dt,mds/d,std1,'b','LineWidth',1,'CapSize',0);
+e.Bar.LineStyle = 'dotted';
 times = (1:length(msds))*dt;
 hold on
 tb = table((times)',(msds/d^2)');
 lm = fitlm(tb,'linear')
 coeffs = lm.Coefficients.Estimate;
 plot(times,coeffs(1)+coeffs(2)*times,'r--','LineWidth',1);
-plot(times,msds/d^2,'k','LineWidth',1);
+e = errorbar(times,msds/d^2,std2,'k','LineWidth',1,'CapSize',0);
+e.Bar.LineStyle = 'dotted';
 hold off
 xlabel("Time (s)");
 ylabel("Ratio");
-formatgraph(gcf,xlims,ylims);
-
-function formatgraph(fig, xlims, ylims)
-    xlim(xlims);
-    ylim(ylims);
-    set(fig,'color','w');
-    set(findall(gcf,'-property','FontSize'),'FontSize',14);
-end
+xlim(xlims);
+ylim(ylims);
+set(gcf,'color','w');
+set(findall(gcf,'-property','FontSize'),'FontSize',14);
