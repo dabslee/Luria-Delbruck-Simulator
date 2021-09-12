@@ -1,7 +1,7 @@
 % Provides a visual simulations of a random walk in 1-dimension.
 % If animate=true, shows an animation. If false, just shows the final
 % result instantly.
-animate = true;
+animate = false;
 
 startpos = [0,0];
 steps = 1000;
@@ -10,7 +10,7 @@ path = walkND(startpos, steps, stepsize);
 
 for i = 1:steps
     if (animate || i == steps)
-        plot(path(1:i,1),path(1:i,2),'k--');
+        plot(path(1:i,1),path(1:i,2),'k-');
         hold on
         plot(path(i,1),path(i,2),'r.','MarkerSize',20);
         hold off
