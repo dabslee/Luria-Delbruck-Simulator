@@ -14,22 +14,17 @@ class ReactApp extends React.Component {
     selectSoluble(choseSoluble) {
         this.setState({answer_selected : choseSoluble});
         this.setState({answer_correct : (choseSoluble == isSoluble(this.state.salt))});
+        if (this.state.answer_correct) this.setState({correct_count : this.state.correct_count+1});
+        else this.setState({incorrect_count : this.state.incorrect_count+1});
     }
     
     render() {
         // correct or incorrect message
         let correct_message = null;
-        if (this.state.answer_correct == true) {
+        if (this.state.answer_correct != null) {
             correct_message = (
                 <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                    <h2 class="text-muted me-3">Correct!</h2>
-                    <div class="btn btn-secondary">Next <i class="bi bi-arrow-right"></i></div>
-                </div>
-            );
-        } else if (this.state.answer_correct == false) {
-            correct_message = (
-                <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                    <h2 class="text-muted me-3">Incorrect!</h2>
+                    <h2 class="text-muted me-3">{this.state.answer_correct ? "Correct" : "Incorrect"}!</h2>
                     <div class="btn btn-secondary">Next <i class="bi bi-arrow-right"></i></div>
                 </div>
             );
