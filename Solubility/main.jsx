@@ -7,10 +7,33 @@ class ReactApp extends React.Component {
             total_count: 10,
             salt: <Salt/>,
             answer_selected: null,
+            answer_correct: null,
         };
+    }
+
+    selectSoluble(choseSoluble) {
+        this.setState({answer_selected : choseSoluble});
+        this.setState({answer_correct : (choseSoluble == isSoluble(this.state.salt))});
     }
     
     render() {
+        let correct_message = null;
+        if (this.state.answer_correct == true) {
+            correct_message = (
+                <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                    <h2 class="text-muted me-3">Correct!</h2>
+                    <div class="btn btn-secondary">Next <i class="bi bi-arrow-right"></i></div>
+                </div>
+            );
+        } else if (this.state.answer_correct == false) {
+            correct_message = (
+                <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                    <h2 class="text-muted me-3">Incorrect!</h2>
+                    <div class="btn btn-secondary">Next <i class="bi bi-arrow-right"></i></div>
+                </div>
+            );
+        }
+
         return (
             <div class="body-class" style={{width: "100%", height: "100%"}}>
                 <div class="content">
@@ -45,17 +68,14 @@ class ReactApp extends React.Component {
                     <div class="card shadow mb-3" style={{flex: "30 2 auto"}}>
                         <div class="card-body centerer" style={{flexDirection: "column"}}>
                             <h1>{this.state.salt}</h1>
-                            <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                                <h2 class="text-muted me-3">Correct!</h2>
-                                <div class="btn btn-secondary">Next <i class="bi bi-arrow-right"></i></div>
-                            </div>
+                            {correct_message}
                         </div>
                     </div>
-                    <div class="btn btn-success shadow mb-3 centerer" style={{flex: "2 2 auto", position: "relative"}}>
+                    <div class="btn btn-success shadow mb-3 centerer" style={{flex: "2 2 auto", position: "relative"}} onClick={() => this.selectSoluble(true)}>
                         <h5>Soluble</h5>
                         <h1 style={{position: "absolute", right: "15px"}} class="bi bi-check-circle-fill text-white"></h1>
                     </div>
-                    <div class="btn btn-danger shadow centerer" style={{flex: "2 2 auto"}}>
+                    <div class="btn btn-danger shadow centerer" style={{flex: "2 2 auto"}}  onClick={() => this.selectSoluble(false)}>
                         <h5>Insoluble</h5>
                     </div>
                 </div>

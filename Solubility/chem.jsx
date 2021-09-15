@@ -127,55 +127,6 @@ class Salt extends React.Component {
         this.anion = randFromList(anions);
     }
 
-    isSoluble() {
-        // exceptions
-        if (this.cation == cations.SILVER && this.anion == anions.FLUORIDE) return true;
-
-        // if cation is ammonium or alkali then soluble
-        if (this.cation in [
-            cations.AMMONIUM,
-            cations.LITHIUM,
-            cations.SODIUM,
-            cations.POTASSIUM,
-            cations.RUBIDIUM,
-            cations.CESIUM,
-            cations.FRANCIUM,
-        ]) return true;
-
-        // if anion is nitrate or acetate then soluble
-        if (this.anion in [
-            anions.NITRATE,
-            anions.ACETATE,
-        ]) return true;
-
-        // if anion is halide (except fluoride) then soluble except with Ag, Pb(II), Hg2
-        if (this.anion in [
-            anions.CHLORIDE,
-            anions.BROMIDE,
-            anions.IODIDE
-        ] && !(this.cation in [
-            cations.SILVER,
-            cations.LEAD2,
-        ])) return true;
-
-        // if anion is sulfate then soluble except with Ca, Sr, Ba, Pb(II)
-        if (this.anion == anions.SULFATE && !(this.cation in [
-            cations.CALCIUM,
-            cations.STRONTIUM,
-            cations.BARIUM,
-            cations.LEAD2,
-        ])) return true;
-
-        // oxides are soluble if with Ca, Sr, Ba
-        if (this.anion == anions.OXIDE && this.cation in [
-            cations.CALCIUM,
-            cations.STRONTIUM,
-            cations.BARIUM,
-        ]) return true;
-
-        return false;
-    }
-
     render() {
         let lcm_val = lcm(this.cation.charge, Math.abs(this.anion.charge));
         let cation_count = lcm_val / this.cation.charge;
@@ -197,4 +148,53 @@ class Salt extends React.Component {
             <span>{cation_jsx}{anion_jsx}</span>
         )
     }
+}
+
+function isSoluble(salt) {
+    // exceptions
+    if (salt.cation == cations.SILVER && salt.anion == anions.FLUORIDE) return true;
+
+    // if cation is ammonium or alkali then soluble
+    if (salt.cation in [
+        cations.AMMONIUM,
+        cations.LITHIUM,
+        cations.SODIUM,
+        cations.POTASSIUM,
+        cations.RUBIDIUM,
+        cations.CESIUM,
+        cations.FRANCIUM,
+    ]) return true;
+
+    // if anion is nitrate or acetate then soluble
+    if (salt.anion in [
+        anions.NITRATE,
+        anions.ACETATE,
+    ]) return true;
+
+    // if anion is halide (except fluoride) then soluble except with Ag, Pb(II), Hg2
+    if (salt.anion in [
+        anions.CHLORIDE,
+        anions.BROMIDE,
+        anions.IODIDE
+    ] && !(salt.cation in [
+        cations.SILVER,
+        cations.LEAD2,
+    ])) return true;
+
+    // if anion is sulfate then soluble except with Ca, Sr, Ba, Pb(II)
+    if (salt.anion == anions.SULFATE && !(salt.cation in [
+        cations.CALCIUM,
+        cations.STRONTIUM,
+        cations.BARIUM,
+        cations.LEAD2,
+    ])) return true;
+
+    // oxides are soluble if with Ca, Sr, Ba
+    if (salt.anion == anions.OXIDE && salt.cation in [
+        cations.CALCIUM,
+        cations.STRONTIUM,
+        cations.BARIUM,
+    ]) return true;
+
+    return false;
 }
