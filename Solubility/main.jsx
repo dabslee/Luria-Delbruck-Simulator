@@ -5,7 +5,7 @@ class ReactApp extends React.Component {
             correct_count: 0,
             incorrect_count: 0,
             total_count: 10,
-            problem: <span>PbSO<sub>4</sub></span>,
+            salt: <Salt/>,
             answer_selected: null,
         };
     }
@@ -44,7 +44,7 @@ class ReactApp extends React.Component {
                     </div>
                     <div class="card shadow mb-3" style={{flex: "30 2 auto"}}>
                         <div class="card-body centerer" style={{flexDirection: "column"}}>
-                            <h1>{this.state.problem}</h1>
+                            <h1>{this.state.salt}</h1>
                             <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
                                 <h2 class="text-muted me-3">Correct!</h2>
                                 <div class="btn btn-secondary">Next <i class="bi bi-arrow-right"></i></div>

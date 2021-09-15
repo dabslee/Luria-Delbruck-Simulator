@@ -6,103 +6,103 @@ class Ion {
     }
 }
 
-cations = {
+const cations = {
     // the alkali metals
-    LITHIUM: Ion(1, <span>Li</span>),
-    SODIUM: Ion(1, <span>Na</span>),
-    POTASSIUM: Ion(1, <span>K</span>),
-    RUBIDIUM: Ion(1, <span>Rb</span>),
-    CESIUM: Ion(1, <span>Cs</span>),
-    FRANCIUM: Ion(1, <span>Fr</span>),
+    LITHIUM: new Ion(1, <span>Li</span>),
+    SODIUM: new Ion(1, <span>Na</span>),
+    POTASSIUM: new Ion(1, <span>K</span>),
+    RUBIDIUM: new Ion(1, <span>Rb</span>),
+    CESIUM: new Ion(1, <span>Cs</span>),
+    FRANCIUM: new Ion(1, <span>Fr</span>),
 
     // the alkaline earth metals
-    BERYLLIUM: Ion(2, <span>Be</span>),
-    MAGNESIUM: Ion(2, <span>Mg</span>),
-    CALCIUM: Ion(2, <span>Ca</span>),
-    STRONTIUM: Ion(2, <span>Sr</span>),
-    BARIUM: Ion(2, <span>Ba</span>),
-    RADIUM: Ion(2, <span>Ra</span>),
+    BERYLLIUM: new Ion(2, <span>Be</span>),
+    MAGNESIUM: new Ion(2, <span>Mg</span>),
+    CALCIUM: new Ion(2, <span>Ca</span>),
+    STRONTIUM: new Ion(2, <span>Sr</span>),
+    BARIUM: new Ion(2, <span>Ba</span>),
+    RADIUM: new Ion(2, <span>Ra</span>),
 
     // 3d transition metals
-    SCANDIUM3: Ion(3, <span>Sc</span>),
-    TITANIUM4: Ion(4, <span>Ti</span>),
-    VANADIUM2: Ion(2, <span>V</span>),
-    VANADIUM3: Ion(3, <span>V</span>),
-    VANADIUM4: Ion(4, <span>V</span>),
-    VANADIUM5: Ion(5, <span>V</span>),
-    CHROMIUM2: Ion(2, <span>Cr</span>),
-    CHROMIUM3: Ion(3, <span>Cr</span>),
-    CHROMIUM6: Ion(6, <span>Cr</span>),
-    MANGANESE2: Ion(2, <span>Mn</span>),
-    MANGANESE3: Ion(3, <span>Mn</span>),
-    MANGANESE4: Ion(4, <span>Mn</span>),
-    MANGANESE6: Ion(6, <span>Mn</span>),
-    MANGANESE7: Ion(7, <span>Mn</span>),
-    IRON2: Ion(2, <span>Fe</span>),
-    IRON3: Ion(3, <span>Fe</span>),
-    COBALT2: Ion(2, <span>Co</span>),
-    COBALT3: Ion(3, <span>Co</span>),
-    NICKEL2: Ion(2, <span>Ni</span>),
-    COPPER1: Ion(1, <span>Cu</span>),
-    COPPER2: Ion(2, <span>Cu</span>),
-    ZINC2: Ion(2, <span>Zn</span>),
+    SCANDIUM3: new Ion(3, <span>Sc</span>),
+    TITANIUM4: new Ion(4, <span>Ti</span>),
+    VANADIUM2: new Ion(2, <span>V</span>),
+    VANADIUM3: new Ion(3, <span>V</span>),
+    VANADIUM4: new Ion(4, <span>V</span>),
+    VANADIUM5: new Ion(5, <span>V</span>),
+    CHROMIUM2: new Ion(2, <span>Cr</span>),
+    CHROMIUM3: new Ion(3, <span>Cr</span>),
+    CHROMIUM6: new Ion(6, <span>Cr</span>),
+    MANGANESE2: new Ion(2, <span>Mn</span>),
+    MANGANESE3: new Ion(3, <span>Mn</span>),
+    MANGANESE4: new Ion(4, <span>Mn</span>),
+    MANGANESE6: new Ion(6, <span>Mn</span>),
+    MANGANESE7: new Ion(7, <span>Mn</span>),
+    IRON2: new Ion(2, <span>Fe</span>),
+    IRON3: new Ion(3, <span>Fe</span>),
+    COBALT2: new Ion(2, <span>Co</span>),
+    COBALT3: new Ion(3, <span>Co</span>),
+    NICKEL2: new Ion(2, <span>Ni</span>),
+    COPPER1: new Ion(1, <span>Cu</span>),
+    COPPER2: new Ion(2, <span>Cu</span>),
+    ZINC2: new Ion(2, <span>Zn</span>),
 
     // Other elemental cations
-    ALUMINUM: Ion(3, <span>Al</span>),
-    SILVER: Ion(1, <span>Ag</span>),
-    LEAD2: Ion(2, <span>Pb</span>),
-    LEAD4: Ion(4, <span>Pb</span>),
+    ALUMINUM: new Ion(3, <span>Al</span>),
+    SILVER: new Ion(1, <span>Ag</span>),
+    LEAD2: new Ion(2, <span>Pb</span>),
+    LEAD4: new Ion(4, <span>Pb</span>),
 
     // Polyatomic cations
-    AMMONIUM: Ion(1, <span>NH<sub>4</sub></span>, polyatomic=true),
-    MERCURY1: Ion(2, <span>Hg<sub>2</sub></span>, polyatomic=true),
+    AMMONIUM: new Ion(1, <span>NH<sub>4</sub></span>, true),
+    MERCURY1: new Ion(2, <span>Hg<sub>2</sub></span>, true),
 }
 
-anions = {
+const anions = {
     // halides
-    FLUORIDE: Ion(-1, <span>F</span>),
-    CHLORIDE: Ion(-1, <span>Cl</span>),
-    BROMIDE: Ion(-1, <span>Br</span>),
-    IODIDE: Ion(-1, <span>I</span>),
+    FLUORIDE: new Ion(-1, <span>F</span>),
+    CHLORIDE: new Ion(-1, <span>Cl</span>),
+    BROMIDE: new Ion(-1, <span>Br</span>),
+    IODIDE: new Ion(-1, <span>I</span>),
 
     // chalcogens
-    OXIDE: Ion(-2, <span>O</span>),
-    SULFIDE: Ion(-2, <span>S</span>),
-    SELENIDE: Ion(-2, <span>Se</span>),
+    OXIDE: new Ion(-2, <span>O</span>),
+    SULFIDE: new Ion(-2, <span>S</span>),
+    SELENIDE: new Ion(-2, <span>Se</span>),
 
     // pnictogens
-    NITRIDE: Ion(-3, <span>N</span>),
-    PHOSPHIDE: Ion(-3, <span>P</span>),
+    NITRIDE: new Ion(-3, <span>N</span>),
+    PHOSPHIDE: new Ion(-3, <span>P</span>),
 
     // other elemental anions
-    CARBIDE: Ion(-4, <span>C</span>),
+    CARBIDE: new Ion(-4, <span>C</span>),
 
     // polyatomic anions
-    SULFATE: Ion(-2, <span>SO<sub>4</sub></span>, polyatomic=true),
-    BISULFATE: Ion(-1, <span>HSO<sub>4</sub></span>, polyatomic=true),
-    SULFITE: Ion(-2, <span>SO<sub>3</sub></span>, polyatomic=true),
-    NITRATE: Ion(-1, <span>NO<sub>3</sub></span>, polyatomic=true),
-    NITRITE: Ion(-1, <span>NO<sub>2</sub></span>, polyatomic=true),
-    PHOSPHATE: Ion(-3, <span>PO<sub>4</sub></span>, polyatomic=true),
-    BIPHOSPHATE: Ion(-2, <span>HPO<sub>4</sub></span>, polyatomic=true),
-    PHOSPHITE: Ion(-3, <span>PO<sub>3</sub></span>, polyatomic=true),
-    HYDROXIDE: Ion(-1, <span>OH</span>, polyatomic=true),
-    PEROXIDE: Ion(-2, <span>O<sub>2</sub></span>, polyatomic=true),
-    ACETATE: Ion(-1, <span>C<sub>2</sub>H<sub>3</sub>O<sub>2</sub></span>, polyatomic=true),
-    PERCHLORATE: Ion(-1, <span>ClO<sub>4</sub></span>, polyatomic=true),
-    CHLORATE: Ion(-1, <span>ClO<sub>3</sub></span>, polyatomic=true),
-    CHLORITE: Ion(-1, <span>ClO<sub>2</sub></span>, polyatomic=true),
-    HYPOCHLORITE: Ion(-1, <span>ClO</span>, polyatomic=true),
-    CHROMATE: Ion(-2, <span>CrO<sub>4</sub></span>, polyatomic=true),
-    DICHROMATE: Ion(-2, <span>Cr<sub>2</sub>O<sub>7</sub></span>, polyatomic=true),
-    PERMANGANATE: Ion(-1, <span>MnO<sub>4</sub></span>, polyatomic=true),
-    CYANIDE: Ion(-1, <span>CN</span>, polyatomic=true),
-    CYANATE: Ion(-1, <span>CNO</span>, polyatomic=true),
-    THIOCYANATE: Ion(-1, <span>SCN</span>, polyatomic=true),
-    CARBONATE: Ion(-2, <span>CO<sub>3</sub></span>, polyatomic=true),
-    BICARBONATE: Ion(-1, <span>HCO<sub>3</sub></span>, polyatomic=true),
-    OXALATE: Ion(-2, <span>C<sub>2</sub>O<sub>4</sub></span>, polyatomic=true),
-    THIOSULFATE: Ion(-2, <span>S<sub>2</sub>O<sub>3</sub></span>, polyatomic=true),
+    SULFATE: new Ion(-2, <span>SO<sub>4</sub></span>, true),
+    BISULFATE: new Ion(-1, <span>HSO<sub>4</sub></span>, true),
+    SULFITE: new Ion(-2, <span>SO<sub>3</sub></span>, true),
+    NITRATE: new Ion(-1, <span>NO<sub>3</sub></span>, true),
+    NITRITE: new Ion(-1, <span>NO<sub>2</sub></span>, true),
+    PHOSPHATE: new Ion(-3, <span>PO<sub>4</sub></span>, true),
+    BIPHOSPHATE: new Ion(-2, <span>HPO<sub>4</sub></span>, true),
+    PHOSPHITE: new Ion(-3, <span>PO<sub>3</sub></span>, true),
+    HYDROXIDE: new Ion(-1, <span>OH</span>, true),
+    PEROXIDE: new Ion(-2, <span>O<sub>2</sub></span>, true),
+    ACETATE: new Ion(-1, <span>C<sub>2</sub>H<sub>3</sub>O<sub>2</sub></span>, true),
+    PERCHLORATE: new Ion(-1, <span>ClO<sub>4</sub></span>, true),
+    CHLORATE: new Ion(-1, <span>ClO<sub>3</sub></span>, true),
+    CHLORITE: new Ion(-1, <span>ClO<sub>2</sub></span>, true),
+    HYPOCHLORITE: new Ion(-1, <span>ClO</span>, true),
+    CHROMATE: new Ion(-2, <span>CrO<sub>4</sub></span>, true),
+    DICHROMATE: new Ion(-2, <span>Cr<sub>2</sub>O<sub>7</sub></span>, true),
+    PERMANGANATE: new Ion(-1, <span>MnO<sub>4</sub></span>, true),
+    CYANIDE: new Ion(-1, <span>CN</span>, true),
+    CYANATE: new Ion(-1, <span>CNO</span>, true),
+    THIOCYANATE: new Ion(-1, <span>SCN</span>, true),
+    CARBONATE: new Ion(-2, <span>CO<sub>3</sub></span>, true),
+    BICARBONATE: new Ion(-1, <span>HCO<sub>3</sub></span>, true),
+    OXALATE: new Ion(-2, <span>C<sub>2</sub>O<sub>4</sub></span>, true),
+    THIOSULFATE: new Ion(-2, <span>S<sub>2</sub>O<sub>3</sub></span>, true),
 }
 
 function lcm(number1, number2) {
@@ -115,17 +115,14 @@ function lcm(number1, number2) {
     return (number1 * number2) / hcf;
 }
 function randFromList(lst) {
-    let index = Math.floor(Math.random()*lst.length);
-    return lst[index];
+    let length = Object.keys(lst).length;
+    let index = Math.floor(Math.random()*length);
+    return lst[Object.keys(lst)[index]];
 }
 
 class Salt extends React.Component {
-    constructor (cation=null, anion=null) {
-        if (cation != null && anion != null) {
-            this.cation = cation;
-            this.anion = anion;
-            return;
-        }
+    constructor () {
+        super();
         this.cation = randFromList(cations);
         this.anion = randFromList(anions);
     }
@@ -163,10 +160,10 @@ class Salt extends React.Component {
 
         // if anion is sulfate then soluble except with Ca, Sr, Ba, Pb(II)
         if (this.anion == anions.SULFATE && !(this.cation in [
-            anions.CALCIUM,
-            anions.STRONTIUM,
-            anions.BARIUM,
-            anions.LEAD2,
+            cations.CALCIUM,
+            cations.STRONTIUM,
+            cations.BARIUM,
+            cations.LEAD2,
         ])) return true;
 
         // oxides are soluble if with Ca, Sr, Ba
@@ -180,14 +177,21 @@ class Salt extends React.Component {
     }
 
     render() {
-        let lcm = lcm(this.cation.charge, Math.abs(this.anion.charge));
-        let cation_count = lcm / this.cation.charge;
-        let anion_count = lcm / Math.abs(this.anion.charge);
+        let lcm_val = lcm(this.cation.charge, Math.abs(this.anion.charge));
+        let cation_count = lcm_val / this.cation.charge;
+        let anion_count = lcm_val / Math.abs(this.anion.charge);
         
         let cation_jsx = this.cation.symbol;
-        if (cation_count > 1) cation_jsx = <span>({this.cation.symbol})<sub>{cation_count}</sub></span>;
-        let anion_count = this.anion.symbol;
-        if (anion_count > 1) anion_jsx = <span>({this.anion.symbol})<sub>{anion_count}</sub></span>;
+        if (cation_count > 1) {
+            if (this.cation.polyatomic) cation_jsx = <span>({cation_jsx})</span>;
+            cation_jsx = <span>{cation_jsx}<sub>{cation_count}</sub></span>;
+        }
+
+        let anion_jsx = this.anion.symbol;
+        if (anion_count > 1) {
+            if (this.anion.polyatomic) anion_jsx = <span>({anion_jsx})</span>;
+            anion_jsx = <span>{anion_jsx}<sub>{anion_count}</sub></span>;
+        }
         
         return (
             <span>{cation_jsx}{anion_jsx}</span>
