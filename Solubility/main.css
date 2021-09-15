@@ -1,0 +1,30 @@
+body, .body-class {
+    display: flex;
+    justify-content: center;
+}
+.centerer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.content {
+    flex: 2 2 auto;
+    max-width: 1000px;
+    margin: 50px;
+    flex-direction: column;
+    display: flex;
+}
+#heading-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.flex-row-baseline {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline
+}
+.progress {
+    flex: 2 2 auto
+}
