@@ -1,7 +1,8 @@
 class Ion {
-    constructor (charge, jsx) {
+    constructor (charge, symbol, polyatomic=false) {
         this.charge = charge;
-        this.jsx = jsx;
+        this.symbol = symbol;
+        this.polyatomic = polyatomic;
     }
 }
 
@@ -53,8 +54,8 @@ cations = {
     LEAD4: Ion(4, <span>Pb</span>),
 
     // Polyatomic cations
-    AMMONIUM: Ion(1, <span>NH<sub>4</sub></span>),
-    MERCURY1: Ion(2, <span>Hg<sub>2</sub></span>),
+    AMMONIUM: Ion(1, <span>NH<sub>4</sub></span>, polyatomic=true),
+    MERCURY1: Ion(2, <span>Hg<sub>2</sub></span>, polyatomic=true),
 }
 
 anions = {
@@ -77,37 +78,56 @@ anions = {
     CARBIDE: Ion(-4, <span>C</span>),
 
     // polyatomic anions
-    SULFATE: Ion(-2, <span>SO<sub>4</sub></span>),
-    BISULFATE: Ion(-1, <span>HSO<sub>4</sub></span>),
-    SULFITE: Ion(-2, <span>SO<sub>3</sub></span>),
-    NITRATE: Ion(-1, <span>NO<sub>3</sub></span>),
-    NITRITE: Ion(-1, <span>NO<sub>2</sub></span>),
-    PHOSPHATE: Ion(-3, <span>PO<sub>4</sub></span>),
-    BIPHOSPHATE: Ion(-2, <span>HPO<sub>4</sub></span>),
-    PHOSPHITE: Ion(-3, <span>PO<sub>3</sub></span>),
-    HYDROXIDE: Ion(-1, <span>OH</span>),
-    PEROXIDE: Ion(-2, <span>O<sub>2</sub></span>),
-    ACETATE: Ion(-1, <span>C<sub>2</sub>H<sub>3</sub>O<sub>2</sub></span>),
-    PERCHLORATE: Ion(-1, <span>ClO<sub>4</sub></span>),
-    CHLORATE: Ion(-1, <span>ClO<sub>3</sub></span>),
-    CHLORITE: Ion(-1, <span>ClO<sub>2</sub></span>),
-    HYPOCHLORITE: Ion(-1, <span>ClO</span>),
-    CHROMATE: Ion(-2, <span>CrO<sub>4</sub></span>),
-    DICHROMATE: Ion(-2, <span>Cr<sub>2</sub>O<sub>7</sub></span>),
-    PERMANGANATE: Ion(-1, <span>MnO<sub>4</sub></span>),
-    CYANIDE: Ion(-1, <span>CN</span>),
-    CYANATE: Ion(-1, <span>CNO</span>),
-    THIOCYANATE: Ion(-1, <span>SCN</span>),
-    CARBONATE: Ion(-2, <span>CO<sub>3</sub></span>),
-    BICARBONATE: Ion(-1, <span>HCO<sub>3</sub></span>),
-    OXALATE: Ion(-2, <span>C<sub>2</sub>O<sub>4</sub></span>),
-    THIOSULFATE: Ion(-2, <span>S<sub>2</sub>O<sub>3</sub></span>),
+    SULFATE: Ion(-2, <span>SO<sub>4</sub></span>, polyatomic=true),
+    BISULFATE: Ion(-1, <span>HSO<sub>4</sub></span>, polyatomic=true),
+    SULFITE: Ion(-2, <span>SO<sub>3</sub></span>, polyatomic=true),
+    NITRATE: Ion(-1, <span>NO<sub>3</sub></span>, polyatomic=true),
+    NITRITE: Ion(-1, <span>NO<sub>2</sub></span>, polyatomic=true),
+    PHOSPHATE: Ion(-3, <span>PO<sub>4</sub></span>, polyatomic=true),
+    BIPHOSPHATE: Ion(-2, <span>HPO<sub>4</sub></span>, polyatomic=true),
+    PHOSPHITE: Ion(-3, <span>PO<sub>3</sub></span>, polyatomic=true),
+    HYDROXIDE: Ion(-1, <span>OH</span>, polyatomic=true),
+    PEROXIDE: Ion(-2, <span>O<sub>2</sub></span>, polyatomic=true),
+    ACETATE: Ion(-1, <span>C<sub>2</sub>H<sub>3</sub>O<sub>2</sub></span>, polyatomic=true),
+    PERCHLORATE: Ion(-1, <span>ClO<sub>4</sub></span>, polyatomic=true),
+    CHLORATE: Ion(-1, <span>ClO<sub>3</sub></span>, polyatomic=true),
+    CHLORITE: Ion(-1, <span>ClO<sub>2</sub></span>, polyatomic=true),
+    HYPOCHLORITE: Ion(-1, <span>ClO</span>, polyatomic=true),
+    CHROMATE: Ion(-2, <span>CrO<sub>4</sub></span>, polyatomic=true),
+    DICHROMATE: Ion(-2, <span>Cr<sub>2</sub>O<sub>7</sub></span>, polyatomic=true),
+    PERMANGANATE: Ion(-1, <span>MnO<sub>4</sub></span>, polyatomic=true),
+    CYANIDE: Ion(-1, <span>CN</span>, polyatomic=true),
+    CYANATE: Ion(-1, <span>CNO</span>, polyatomic=true),
+    THIOCYANATE: Ion(-1, <span>SCN</span>, polyatomic=true),
+    CARBONATE: Ion(-2, <span>CO<sub>3</sub></span>, polyatomic=true),
+    BICARBONATE: Ion(-1, <span>HCO<sub>3</sub></span>, polyatomic=true),
+    OXALATE: Ion(-2, <span>C<sub>2</sub>O<sub>4</sub></span>, polyatomic=true),
+    THIOSULFATE: Ion(-2, <span>S<sub>2</sub>O<sub>3</sub></span>, polyatomic=true),
 }
 
-class Salt {
-    constructor (cation, anion) {
-        this.cation = cation;
-        this.anion = anion;
+function lcm(number1, number2) {
+    let hcf;
+    for (let i = 1; i <= number1 && i <= number2; i++) {
+        if( number1 % i == 0 && number2 % i == 0) {
+            hcf = i;
+        }
+    }
+    return (number1 * number2) / hcf;
+}
+function randFromList(lst) {
+    let index = Math.floor(Math.random()*lst.length);
+    return lst[index];
+}
+
+class Salt extends React.Component {
+    constructor (cation=null, anion=null) {
+        if (cation != null && anion != null) {
+            this.cation = cation;
+            this.anion = anion;
+            return;
+        }
+        this.cation = randFromList(cations);
+        this.anion = randFromList(anions);
     }
 
     isSoluble() {
@@ -159,20 +179,18 @@ class Salt {
         return false;
     }
 
-    toString() {
+    render() {
         let lcm = lcm(this.cation.charge, Math.abs(this.anion.charge));
         let cation_count = lcm / this.cation.charge;
         let anion_count = lcm / Math.abs(this.anion.charge);
         
+        let cation_jsx = this.cation.symbol;
+        if (cation_count > 1) cation_jsx = <span>({this.cation.symbol})<sub>{cation_count}</sub></span>;
+        let anion_count = this.anion.symbol;
+        if (anion_count > 1) anion_jsx = <span>({this.anion.symbol})<sub>{anion_count}</sub></span>;
+        
+        return (
+            <span>{cation_jsx}{anion_jsx}</span>
+        )
     }
-}
-
-function lcm(number1, number2) {
-    let hcf;
-    for (let i = 1; i <= number1 && i <= number2; i++) {
-        if( number1 % i == 0 && number2 % i == 0) {
-            hcf = i;
-        }
-    }
-    return (number1 * number2) / hcf;
 }
