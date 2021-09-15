@@ -1,7 +1,11 @@
 class ReactApp extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            correct_count: 0,
+            incorrect_count: 0,
+            total_count: 10,
+        };
     }
     
     render() {
@@ -27,18 +31,12 @@ class ReactApp extends React.Component {
                             <div
                             class="progress-bar progress-bar-striped bg-success"
                             role="progressbar"
-                            aria-valuenow="50"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                            style={{width: "50%"}}
+                            style={{width: this.state.correct_count/this.state.total_count*100 + "%"}}
                             ></div>
                             <div
                             class="progress-bar progress-bar-striped bg-danger"
                             role="progressbar"
-                            aria-valuenow="10"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                            style={{width: "10%"}}
+                            style={{width: this.state.incorrect_count/this.state.total_count*100 + "%"}}
                             ></div>
                         </div>
                     </div>
@@ -71,15 +69,13 @@ class ReactApp extends React.Component {
                             <div class="modal-body">
                                 <p>This project automatically generates ionic compounds and quizzes the user on their solubility.
                                     The user can reset their progress or change the settings of the quiz by pressing on the gear icon on the top right.</p>
-                                <p>This project was built by Brandon Lee as an exercise in using
-                                    <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/" target="_new">Bootstrap5</a> components and
-                                    <a href="https://reactjs.org/" target="_new">ReactJS</a> to make a simple, responsive, fully front-end app.</p>
+                                <p>This project was built by Brandon Lee as an exercise in using <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/" target="_new">Bootstrap5</a> components and <a href="https://reactjs.org/" target="_new">ReactJS</a> to make a simple, responsive, fully front-end app.</p>
                                 <hr style={{width: "25%"}}/>
                                 <a href="" class="link-secondary"><i class="bi bi-github me-3"></i>Project GitHub</a><br/>
                                 <a href="" class="link-secondary"><i class="bi bi-credit-card-2-front-fill me-3"></i>Brandon's Website</a>
                             </div>
                             <div class="modal-footer">
-                                <span>&copy; Brandon Lee, 2021 &bullet; All rights reserved</span>
+                                <span>&copy; Brandon Lee, 2021 • All rights reserved</span>
                             </div>
                         </div>
                     </div>
