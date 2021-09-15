@@ -17,6 +17,7 @@ class ReactApp extends React.Component {
     }
     
     render() {
+        // correct or incorrect message
         let correct_message = null;
         if (this.state.answer_correct == true) {
             correct_message = (
@@ -32,6 +33,33 @@ class ReactApp extends React.Component {
                     <div class="btn btn-secondary">Next <i class="bi bi-arrow-right"></i></div>
                 </div>
             );
+        }
+
+        // choice buttons
+        let soluble_icon = null;
+        let soluble_color = "btn-secondary";
+        let insoluble_icon = null;
+        let insoluble_color = "btn-secondary";
+        let buttons_enabled = "";
+        if (this.state.answer_selected != null){
+            buttons_enabled = "disabled";
+            if (this.state.answer_correct == true) {
+                if (this.state.answer_selected == true) { // soluble and correct
+                    soluble_icon = <h1 style={{position: "absolute", right: "15px"}} class="bi bi-check-circle-fill text-white"></h1>;
+                    soluble_color = "btn-success";
+                } else if (this.state.answer_selected == false) { // insoluble and correct
+                    insoluble_icon = <h1 style={{position: "absolute", right: "15px"}} class="bi bi-check-circle-fill text-white"></h1>;
+                    insoluble_color = "btn-success";
+                }
+            } else if (this.state.answer_correct == false) {
+                if (this.state.answer_selected == true) { // soluble and incorrect
+                    soluble_icon = <h1 style={{position: "absolute", right: "15px"}} class="bi bi-x-circle-fill text-white"></h1>;
+                    soluble_color = "btn-danger";
+                } else if (this.state.answer_selected == false) { // insoluble and incorrect
+                    insoluble_icon = <h1 style={{position: "absolute", right: "15px"}} class="bi bi-x-circle-fill text-white"></h1>;
+                    insoluble_color = "btn-danger";
+                }
+            }
         }
 
         return (
@@ -71,12 +99,13 @@ class ReactApp extends React.Component {
                             {correct_message}
                         </div>
                     </div>
-                    <div class="btn btn-success shadow mb-3 centerer" style={{flex: "2 2 auto", position: "relative"}} onClick={() => this.selectSoluble(true)}>
+                    <div class={"btn " + soluble_color + " shadow mb-3 centerer " + buttons_enabled} style={{flex: "2 2 auto", position: "relative"}} onClick={() => this.selectSoluble(true)}>
                         <h5>Soluble</h5>
-                        <h1 style={{position: "absolute", right: "15px"}} class="bi bi-check-circle-fill text-white"></h1>
+                        {soluble_icon}
                     </div>
-                    <div class="btn btn-danger shadow centerer" style={{flex: "2 2 auto"}}  onClick={() => this.selectSoluble(false)}>
+                    <div class={"btn " + insoluble_color + " shadow centerer " + buttons_enabled} style={{flex: "2 2 auto", position: "relative"}}  onClick={() => this.selectSoluble(false)}>
                         <h5>Insoluble</h5>
+                        {insoluble_icon}
                     </div>
                 </div>
 
