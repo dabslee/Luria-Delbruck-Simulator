@@ -5,6 +5,8 @@ class ReactApp extends React.Component {
             correct_count: 0,
             incorrect_count: 0,
             total_count: 10,
+            problem: <span>PbSO<sub>4</sub></span>,
+            answer_selected: null,
         };
     }
     
@@ -21,11 +23,11 @@ class ReactApp extends React.Component {
                     </div>
                     <div class="mt-4 mb-4 flex-row-baseline">
                         <h5 class="text-muted me-3">
-                            <span class="text-success">25</span>
+                            <span class="text-success">{this.state.correct_count}</span>
                             /
-                            <span class="text-danger">5</span>
+                            <span class="text-danger">{this.state.incorrect_count}</span>
                             /
-                            <span class="text-muted">50</span>
+                            <span class="text-muted">{this.state.total_count}</span>
                         </h5>
                         <div class="progress">
                             <div
@@ -42,7 +44,7 @@ class ReactApp extends React.Component {
                     </div>
                     <div class="card shadow mb-3" style={{flex: "30 2 auto"}}>
                         <div class="card-body centerer" style={{flexDirection: "column"}}>
-                            <h1>PbSO<sub>4</sub></h1>
+                            <h1>{this.state.problem}</h1>
                             <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
                                 <h2 class="text-muted me-3">Correct!</h2>
                                 <div class="btn btn-secondary">Next <i class="bi bi-arrow-right"></i></div>
