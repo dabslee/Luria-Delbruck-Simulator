@@ -13,9 +13,18 @@ class ReactApp extends React.Component {
 
     selectSoluble(choseSoluble) {
         this.setState({answer_selected : choseSoluble});
-        this.setState({answer_correct : (choseSoluble == isSoluble(this.state.salt))});
-        if (this.state.answer_correct) this.setState({correct_count : this.state.correct_count+1});
+        let correct = (choseSoluble == isSoluble(this.state.salt));
+        this.setState({answer_correct : correct});
+        if (correct) this.setState({correct_count : this.state.correct_count+1});
         else this.setState({incorrect_count : this.state.incorrect_count+1});
+    }
+
+    nextProblem() {
+        this.setState({
+            answer_selected : null,
+            answer_correct : null,
+            salt : <Salt/>,
+        });
     }
     
     render() {
@@ -25,7 +34,7 @@ class ReactApp extends React.Component {
             correct_message = (
                 <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
                     <h2 class="text-muted me-3">{this.state.answer_correct ? "Correct" : "Incorrect"}!</h2>
-                    <div class="btn btn-secondary">Next <i class="bi bi-arrow-right"></i></div>
+                    <div class="btn btn-secondary" onClick={() => {this.nextProblem()}}>Next <i class="bi bi-arrow-right"></i></div>
                 </div>
             );
         }
@@ -77,12 +86,12 @@ class ReactApp extends React.Component {
                         </h5>
                         <div class="progress">
                             <div
-                            class="progress-bar progress-bar-striped bg-success"
+                            class="progress-bar progress-bar-striped progress-bar-animated bg-success"
                             role="progressbar"
                             style={{width: this.state.correct_count/this.state.total_count*100 + "%"}}
                             ></div>
                             <div
-                            class="progress-bar progress-bar-striped bg-danger"
+                            class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
                             role="progressbar"
                             style={{width: this.state.incorrect_count/this.state.total_count*100 + "%"}}
                             ></div>
