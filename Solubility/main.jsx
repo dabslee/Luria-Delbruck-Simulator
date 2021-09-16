@@ -26,6 +26,18 @@ class ReactApp extends React.Component {
             salt : new Salt(randFromList(cations), randFromList(anions)),
         });
     }
+
+    newQuiz() {
+        this.setState({
+            correct_count : 0,
+            incorrect_count : 0,
+            total_count : $("#numberOfProblems").val(),
+            answer_selected : null,
+            answer_correct : null,
+            salt : new Salt(randFromList(cations), randFromList(anions)),
+        });
+        $("#closeOptionsModal").click()
+    }
     
     render() {
         // correct or incorrect message
@@ -142,14 +154,14 @@ class ReactApp extends React.Component {
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="optionsModalLabel">Options</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button id="closeOptionsModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <label for="numberOfProblems" class="form-label">Number of problems:</label>
-                                    <input type="number" class="form-control" id="numberOfProblems" value="10"/>
+                                    <input type="number" class="form-control" id="numberOfProblems" defaultValue="10" min="0" onInput={() => {$("#numberOfProblems").val(Math.floor(Math.abs($("#numberOfProblems").val())))}} />
                                 </div>
-                                <div class="form-check mb-3">
+                                {/* <div class="form-check mb-3">
                                     <input class="form-check-input" type="checkbox" value="Checked" id="noRepeats" checked/>
                                     <label class="form-check-label" for="noRepeats">
                                         Don't repeat problems
@@ -160,10 +172,10 @@ class ReactApp extends React.Component {
                                     <label class="form-check-label" for="missedOnly">
                                         Only quiz me on missed problems
                                     </label>
-                                </div>
+                                </div> */}
                             </div>
                             <div class="modal-footer">
-                                <div class="btn btn-primary">New Quiz</div>
+                                <div class="btn btn-primary" onClick={() => this.newQuiz()}>New Quiz</div>
                                 <div class="btn btn-danger">Clear Data</div>
                             </div>
                         </div>
