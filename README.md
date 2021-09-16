@@ -8,7 +8,7 @@ A collection of simulations based on famous labs. This README offers brief summa
         </td>
         <td>
             <h3>Solubility Quizzer</h3>
-            <a href="./Solubility/README.md">
+            <a href="./Solubility">
                 <img src="https://img.shields.io/badge/-View_project-blue?logo=github&logoColor=white&style=flat-square">
             </a>
             <p>Automatically generates ionic compounds and quizzes the user on their solubility.</p>
@@ -23,7 +23,7 @@ A collection of simulations based on famous labs. This README offers brief summa
         </td>
         <td>
             <h3>Brownian Motion</h3>
-            <a href="./Brownian Motion/README.md">
+            <a href="./Brownian Motion">
                 <img src="https://img.shields.io/badge/-View_project-blue?logo=github&logoColor=white&style=flat-square">
             </a>
             <p>Offers a particle based simulation of 1D Brownian motion, then shows that it is analogous to a 1D random walk by comparing the dependences of displacement and mean-squared-distance to time. Also simulates random walks in n-dimensions, and shows visual animations of 1D, 2D, and 3D random walks.</p>
@@ -38,7 +38,7 @@ A collection of simulations based on famous labs. This README offers brief summa
         </td>
         <td>
             <h3>Luria-Delbrück Fluctuation Test</h3>
-            <a href="./Luria-Delbruck/README.md">
+            <a href="./Luria-Delbruck">
                 <img src="https://img.shields.io/badge/-View_project-blue?logo=github&logoColor=white&style=flat-square">
             </a>
             <p>A simulator of the Luria-Delbrück Fluctuation Test, which showed that the "mutation hypothesis"--that mutations arose randomly independent of their environment--was correct, as opposed to the "acquired immunity hypothesis"--that mutations occured as an adaptive response to an environmental stimulus.</p>
@@ -53,7 +53,7 @@ A collection of simulations based on famous labs. This README offers brief summa
         </td>
         <td>
             <h3>Run-and-Tumble Chemotaxis</h3>
-            <a href="./Chemotaxis/README.md">
+            <a href="./Chemotaxis">
                 <img src="https://img.shields.io/badge/-View_project-blue?logo=github&logoColor=white&style=flat-square">
             </a>
             <p>A simulation of a run-and-tumble chemotaxis on a linear chemical gradient.</p>
