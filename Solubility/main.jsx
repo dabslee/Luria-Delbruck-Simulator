@@ -200,7 +200,7 @@ class ReactApp extends React.Component {
                             </div>
                             <div class="modal-footer">
                                 <div class="btn btn-primary" onClick={() => this.newQuiz()}>New Quiz</div>
-                                <div class="btn btn-danger">Clear Data</div>
+                                {/* <div class="btn btn-danger">Clear Data</div> */}
                             </div>
                         </div>
                     </div>
