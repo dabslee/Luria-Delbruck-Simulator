@@ -8,6 +8,7 @@ class ReactApp extends React.Component {
             salt : new Salt(randFromList(cations), randFromList(anions)),
             answer_selected: null,
             answer_correct: null,
+            game_over: false,
         };
     }
 
@@ -20,15 +21,20 @@ class ReactApp extends React.Component {
     }
 
     nextProblem() {
-        this.setState({
-            answer_selected : null,
-            answer_correct : null,
-            salt : new Salt(randFromList(cations), randFromList(anions)),
-        });
+        if (this.state.correct_count + this.state.incorrect_count >= this.state.total_count) {
+            this.setState({game_over : true});
+        } else {
+            this.setState({
+                answer_selected : null,
+                answer_correct : null,
+                salt : new Salt(randFromList(cations), randFromList(anions)),
+            });
+        }
     }
 
     newQuiz() {
         this.setState({
+            game_over: false,
             correct_count : 0,
             incorrect_count : 0,
             total_count : $("#numberOfProblems").val(),
@@ -78,6 +84,37 @@ class ReactApp extends React.Component {
             }
         }
 
+        // show either game over or card+buttons
+        let gamearea = null;
+        if (this.state.game_over) {
+            gamearea = (
+                <div class="centerer" style={{width: "100%", height: "80%", maxHeight: "500px", flexDirection: "column"}}>
+                    <h2>End of Quiz</h2>
+                    <h3 class="text-muted mb-4">Result: {this.state.correct_count}/{this.state.total_count} ({Math.round(this.state.correct_count/this.state.total_count*100)}%)</h3>
+                    <div class="btn btn-secondary" onClick={() => this.newQuiz()}>Retry<i class="bi bi-arrow-counterclockwise ms-2"></i></div>
+                </div>
+            )
+        } else {
+            gamearea = (
+                <div style={{width: "100%", height: "100%", display: "flex", flexDirection: "column"}}>
+                    <div class="card shadow mb-3" style={{flex: "30 2 auto"}}>
+                        <div class="card-body centerer" style={{flexDirection: "column"}}>
+                            <h1>{this.state.salt.render()}</h1>
+                            {correct_message}
+                        </div>
+                    </div>
+                    <div class={"btn " + soluble_color + " shadow mb-3 centerer " + buttons_enabled} style={{flex: "2 2 auto", position: "relative"}} onClick={() => this.selectSoluble(true)}>
+                        <h5>Soluble</h5>
+                        {soluble_icon}
+                    </div>
+                    <div class={"btn " + insoluble_color + " shadow centerer " + buttons_enabled} style={{flex: "2 2 auto", position: "relative"}}  onClick={() => this.selectSoluble(false)}>
+                        <h5>Insoluble</h5>
+                        {insoluble_icon}
+                    </div>
+                </div>
+            );
+        }
+
         return (
             <div class="body-class" style={{width: "100%", height: "100%"}}>
                 <div class="content">
@@ -109,20 +146,7 @@ class ReactApp extends React.Component {
                             ></div>
                         </div>
                     </div>
-                    <div class="card shadow mb-3" style={{flex: "30 2 auto"}}>
-                        <div class="card-body centerer" style={{flexDirection: "column"}}>
-                            <h1>{this.state.salt.render()}</h1>
-                            {correct_message}
-                        </div>
-                    </div>
-                    <div class={"btn " + soluble_color + " shadow mb-3 centerer " + buttons_enabled} style={{flex: "2 2 auto", position: "relative"}} onClick={() => this.selectSoluble(true)}>
-                        <h5>Soluble</h5>
-                        {soluble_icon}
-                    </div>
-                    <div class={"btn " + insoluble_color + " shadow centerer " + buttons_enabled} style={{flex: "2 2 auto", position: "relative"}}  onClick={() => this.selectSoluble(false)}>
-                        <h5>Insoluble</h5>
-                        {insoluble_icon}
-                    </div>
+                    {gamearea}
                 </div>
 
                 {/* Info Modal */}
@@ -159,7 +183,7 @@ class ReactApp extends React.Component {
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <label for="numberOfProblems" class="form-label">Number of problems:</label>
-                                    <input type="number" class="form-control" id="numberOfProblems" defaultValue="10" min="0" onInput={() => {$("#numberOfProblems").val(Math.floor(Math.abs($("#numberOfProblems").val())))}} />
+                                    <input type="number" class="form-control" id="numberOfProblems" defaultValue={this.state.total_count} min="0" onInput={() => {$("#numberOfProblems").val(Math.floor(Math.abs($("#numberOfProblems").val())))}} />
                                 </div>
                                 {/* <div class="form-check mb-3">
                                     <input class="form-check-input" type="checkbox" value="Checked" id="noRepeats" checked/>
