@@ -154,7 +154,7 @@ function isSoluble(salt) {
     if (salt.cation == cations.SILVER && salt.anion == anions.FLUORIDE) return true;
 
     // if cation is ammonium or alkali then soluble
-    if (salt.cation in [
+    if ([
         cations.AMMONIUM,
         cations.LITHIUM,
         cations.SODIUM,
@@ -162,38 +162,38 @@ function isSoluble(salt) {
         cations.RUBIDIUM,
         cations.CESIUM,
         cations.FRANCIUM,
-    ]) return true;
+    ].includes(salt.cation)) return true;
 
     // if anion is nitrate or acetate then soluble
-    if (salt.anion in [
+    if ([
         anions.NITRATE,
         anions.ACETATE,
-    ]) return true;
+    ].includes(salt.anion)) return true;
 
     // if anion is halide (except fluoride) then soluble except with Ag, Pb(II), Hg2
-    if (salt.anion in [
+    if ([
         anions.CHLORIDE,
         anions.BROMIDE,
         anions.IODIDE
-    ] && !(salt.cation in [
+    ].includes(salt.anion) && !([
         cations.SILVER,
         cations.LEAD2,
-    ])) return true;
+    ].includes(salt.cation))) return true;
 
     // if anion is sulfate then soluble except with Ca, Sr, Ba, Pb(II)
-    if (salt.anion == anions.SULFATE && !(salt.cation in [
+    if (salt.anion == anions.SULFATE && !([
         cations.CALCIUM,
         cations.STRONTIUM,
         cations.BARIUM,
         cations.LEAD2,
-    ])) return true;
+    ].includes(salt.cation))) return true;
 
     // oxides are soluble if with Ca, Sr, Ba
-    if (salt.anion == anions.OXIDE && salt.cation in [
+    if (salt.anion == anions.OXIDE && [
         cations.CALCIUM,
         cations.STRONTIUM,
         cations.BARIUM,
-    ]) return true;
+    ].includes(salt.cation)) return true;
 
     return false;
 }
