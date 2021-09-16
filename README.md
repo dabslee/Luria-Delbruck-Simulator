@@ -3,8 +3,23 @@ A collection of simulations based on famous labs. This README offers brief summa
 
 <table>
     <tr>
+        <td width="30%">
+            <img src="./Solubility/readme_cover.PNG" />
+        </td>
         <td>
-            <img src="./Brownian Motion/brown.png" width="700px">
+            <h3>Solubility Quizzer</h3>
+            <a href="./Solubility/README.md">
+                <img src="https://img.shields.io/badge/-View_project-blue?logo=github&logoColor=white&style=flat-square">
+            </a>
+            <p>Automatically generates ionic compounds and quizzes the user on their solubility.</p>
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td width="30%">
+            <img src="./Brownian Motion/brown.png" />
         </td>
         <td>
             <h3>Brownian Motion</h3>
@@ -18,8 +33,8 @@ A collection of simulations based on famous labs. This README offers brief summa
 
 <table>
     <tr>
-        <td>
-            <img src="./Luria-Delbruck/luria.png" width="700px">
+        <td width="30%">
+            <img src="./Luria-Delbruck/luria.png" />
         </td>
         <td>
             <h3>Luria-Delbrück Fluctuation Test</h3>
@@ -33,8 +48,8 @@ A collection of simulations based on famous labs. This README offers brief summa
 
 <table>
     <tr>
-        <td>
-            <img src="./Chemotaxis/runandtumble_fullplot.png" width="700px">
+        <td width="30%">
+            <img src="./Chemotaxis/runandtumble_fullplot.png" />
         </td>
         <td>
             <h3>Run-and-Tumble Chemotaxis</h3>
@@ -42,21 +57,6 @@ A collection of simulations based on famous labs. This README offers brief summa
                 <img src="https://img.shields.io/badge/-View_project-blue?logo=github&logoColor=white&style=flat-square">
             </a>
             <p>A simulation of a run-and-tumble chemotaxis on a linear chemical gradient.</p>
-        </td>
-    </tr>
-</table>
-
-<table>
-    <tr>
-        <td>
-            <img src="./Solubility/readme_cover.PNG" width="700px">
-        </td>
-        <td>
-            <h3>Solubility Quizzer</h3>
-            <a href="./Solubility/README.md">
-                <img src="https://img.shields.io/badge/-View_project-blue?logo=github&logoColor=white&style=flat-square">
-            </a>
-            <p>Automatically generates ionic compounds and quizzes the user on their solubility.</p>
         </td>
     </tr>
 </table>
