@@ -5,7 +5,7 @@ class ReactApp extends React.Component {
             correct_count: 0,
             incorrect_count: 0,
             total_count: 10,
-            salt: <Salt/>,
+            salt : new Salt(randFromList(cations), randFromList(anions)),
             answer_selected: null,
             answer_correct: null,
         };
@@ -23,7 +23,7 @@ class ReactApp extends React.Component {
         this.setState({
             answer_selected : null,
             answer_correct : null,
-            salt : <Salt/>,
+            salt : new Salt(randFromList(cations), randFromList(anions)),
         });
     }
     
@@ -99,7 +99,7 @@ class ReactApp extends React.Component {
                     </div>
                     <div class="card shadow mb-3" style={{flex: "30 2 auto"}}>
                         <div class="card-body centerer" style={{flexDirection: "column"}}>
-                            <h1>{this.state.salt}</h1>
+                            <h1>{this.state.salt.render()}</h1>
                             {correct_message}
                         </div>
                     </div>

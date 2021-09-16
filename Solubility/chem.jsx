@@ -120,11 +120,10 @@ function randFromList(lst) {
     return lst[Object.keys(lst)[index]];
 }
 
-class Salt extends React.Component {
-    constructor () {
-        super();
-        this.cation = randFromList(cations);
-        this.anion = randFromList(anions);
+class Salt {
+    constructor (cation, anion) {
+        this.cation = cation;
+        this.anion = anion;
     }
 
     render() {
