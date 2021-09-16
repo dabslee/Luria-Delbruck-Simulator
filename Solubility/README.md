@@ -4,7 +4,7 @@
 
 ![](https://img.shields.io/badge/--orange?logo=HTML5&logoColor=white) ![](https://img.shields.io/badge/--yellow?logo=javascript&logoColor=white) ![](https://img.shields.io/badge/--blue?logo=CSS3&logoColor=white) ![](https://img.shields.io/badge/-Bootstrap-purple?logo=Bootstrap&logoColor=white) ![](https://img.shields.io/badge/-React-black?logo=react&logoColor=cyan)
 
-This project automatically generates ionic compounds and quizzes the user on their solubility. 
+This project automatically generates ionic compounds and quizzes the user on their solubility.
 
 Built as an exercise in using Bootstrap5 components and ReactJS to make a simple, responsive, fully front-end app.
 

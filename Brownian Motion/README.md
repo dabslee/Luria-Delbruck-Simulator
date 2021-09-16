@@ -6,6 +6,8 @@
 
 Offers a particle based simulation of 1D Brownian motion, then shows that it is analogous to a 1D random walk by comparing the dependences of displacement and mean-squared-distance to time (constant at 0 and linear, respectively). Also simulates random walks in n-dimensions, and shows visual animations of 1D, 2D, and 3D random walks.
 
+![](brown.png)
+
 ### How to Use
 
 The files in this project are `.m` files and require MATLAB to run.
